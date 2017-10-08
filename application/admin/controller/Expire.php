@@ -1,13 +1,17 @@
 <?php
 namespace app\admin\controller;
 use think\Db;
+use think\Session;
 
 class Expire extends Admin{
     public function index(){
-        $expire=Db::name('expire')->select();
+
+
+        $expire=Db::name('expire')->paginate(8);
+        $page =$expire->render();
 //        var_dump($expire);die;
         $this->assign('expire',$expire);
-
+        $this->assign('page',$page);
 
         return $this->fetch('index');
 
@@ -16,6 +20,8 @@ class Expire extends Admin{
         if(request()->isPost()){
             $expire = model('expire');
             $post_data=\think\Request::instance()->post();
+            $post_data['create_time']=time();
+            $post_data['status']=1;
         //自动验证
             $validate = validate('expire');
             if(!$validate->check($post_data)){
@@ -31,6 +37,7 @@ class Expire extends Admin{
             }
              $this->redirect('/expire/index.html');
         } else {
+
             $this->assign('info',null);
             return $this->fetch('add');
         }
@@ -39,6 +46,7 @@ class Expire extends Admin{
     public function edit($id = 0){
         if($this->request->isPost()){
             $postdata = \think\Request::instance()->post();
+            $post_data['update_time']=time();
             $Channel = \think\Db::name("expire");
             $data = $Channel->update($postdata);
             if($data !== false){
@@ -69,6 +77,7 @@ class Expire extends Admin{
         }
 
         $map = array('id' => array('in', $id) );
+//        var_dump(input('id/a',0));die;
         if(\think\Db::name('expire')->where($map)->delete()){
             //记录行为
             action_log('del_expire', 'expire', $id, UID);

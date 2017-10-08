@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"D:\phpStudy\WWW\twothink\public/../application/user/view/default/login\index.html";i:1506674635;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"D:\phpStudy\WWW\twothink\public/../application/user/view/default/login\index.html";i:1506741851;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-  <title>在线报修</title>
+  <title>登录</title>
 
   <!-- bootstrap1 -->
   <link href="__STATIC__/bootstrap1/css/bootstrap.min.css" rel="stylesheet">

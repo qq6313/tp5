@@ -23,7 +23,9 @@ class Base extends Model {
         $data = Request::instance()->param();
 	    if(empty($data['id']))
             unset($data['id']);
+        //var_dump($data);
         $this->FormData = $data;
+        //var_dump($this->FormData);
         parent::initialize();
     }
 
@@ -69,8 +71,10 @@ class Base extends Model {
             }
             $id = $this->id;
         } else { //更新数据  
-        	$id = $data['id'];    
-            $status = $this->data($data,true)->allowField(true)->save($data,['id'=>$id]); 
+        	$id = $data['id'];
+        	//var_dump($this->data($data,true));exit;
+            $status = $this->data($data,true)->allowField(true)->save($data,['id'=>$id]);
+            //exit;
             if (false === $status) {
                 $this->error = '更新数据失败！';
                 return false;

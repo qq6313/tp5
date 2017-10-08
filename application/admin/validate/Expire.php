@@ -10,5 +10,6 @@ class Expire extends Validate{
         ['des', 'require', '问题简述不能为空'],
         ['tel', 'require', '电话不能为空'],
         ['address', 'require', '地址不能为空'],
+        ['name', 'require', '姓名不能为空'],
     ];
 }

@@ -1,0 +1,118 @@
+{extend name="public/base" /}
+
+{block name="body"}
+<div class="main-title">
+    <h2>
+        {$info['id']?'编辑':'新增'}导航
+        {notempty name="pid">
+        [&nbsp;父导航：<a href="{:url('index','pid='.$pid)}">{$parent.title}</a>&nbsp;]
+        {/notempty}
+    </h2>
+</div>
+<form action="{:url()}" method="post" class="form-horizontal">
+    <input type="hidden" name="status" value="1">
+    <div class="form-item">
+        <label class="item-label">标题<span class="check-tips">（标题）</span></label>
+        <div class="controls">
+            <input type="text" class="text input-large" name="title" value="{$info.title|default=''}">
+        </div>
+    </div>
+    <div class="form-item">
+        <label class="item-label">内容<span class="check-tips">（内容）</span></label>
+        <div class="controls">
+            <input type="text" class="text input-large" name="content" value="{$info.content|default=''}">
+        </div>
+    </div>
+    <div class="form-item">
+        <label class="item-label">作者<span class="check-tips">（作者）</span></label>
+        <div class="controls">
+            <input type="text" class="text input-large" name="author" value="{$info.author|default=''}">
+        </div>
+    </div>
+    <div class="form-item">
+        <label class="item-label">简述<span class="check-tips">（简单描述服务）</span></label>
+        <div class="controls">
+            <input type="text" class="text input-large" name="description" value="{$info.description|default=''}">
+        </div>
+    </div>
+    <div class="form-item">
+        <label class="item-label">开始时间<span class="check-tips">（社区服务开始时间）</span></label>
+        <div class="controls">
+            <input type="date" class="text input-large" name="start_time" value="{$info.start_time|default=''}">
+        </div>
+    </div>
+
+    <div class="form-item">
+        <label class="item-label">结束时间<span class="check-tips">（社区服务结束时间）</span></label>
+        <div class="controls">
+            <input type="date" class="text input-large" name="end_time" value="{$info.end_time|default=''}">
+        </div>
+    </div>
+
+
+    <!--//上传图片-->
+    <div class="controls">
+        <input type="file" id="upload_picture_{$field.name}">
+        <input type="hidden" name="{$field.name}" id="cover_id_{$field.name}"/>
+        <span>建议大小：200*200像素</span>
+        <div class="upload-img-box">
+            {notempty name="data[$field['name']]"}
+            <div class="upload-pre-item"><img src="{$data[$field['name']]|get_cover='path'}"/></div>
+            {/notempty}
+        </div>
+    </div>
+    <script type="text/javascript">
+        //上传图片
+        /* 初始化上传插件 */
+        $("#upload_picture_{$field.name}").uploadify({
+            "height"          : 30,
+            "swf"             : "__PUBLIC__/static/uploadify/uploadify.swf",
+            "fileObjName"     : "download",
+            "buttonText"      : "上传图片",
+            "uploader"        : "{:url('File/uploadPicture',array('session_id'=>session_id()))}",
+            "width"           : 120,
+            'removeTimeout'	  : 1,
+            'fileTypeExts'	  : '*.jpg; *.png; *.gif;',
+            "onUploadSuccess" : uploadPicture{$field.name},
+        'onFallback' : function() {
+            alert('未检测到兼容版本的Flash.');
+        }
+        });
+        function uploadPicture{$field.name}(file, data){
+            var data = $.parseJSON(data);
+            var src = '';
+            if(data.status){
+                $("#cover_id_{$field.name}").val(data.id);
+                src = data.url || '__ROOT__' + data.path
+                $("#cover_id_{$field.name}").parent().find('.upload-img-box').html(
+                    '<div class="upload-pre-item"><img src="' + src + '"/></div>'
+                );
+            } else {
+                updateAlert(data.info);
+                setTimeout(function(){
+                    $('#top-alert').find('button').click();
+                    $(that).removeClass('disabled').prop('disabled',false);
+                },1500);
+            }
+        }
+    </script>
+
+
+
+
+
+
+
+    <div class="form-item">
+        <input type="hidden" name="id" value="{$info.id|default=''}">
+        <button class="btn submit-btn ajax-posts" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+        <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+    </div>
+</form>
+{/block}
+{block name="script"}
+<script type="text/javascript" charset="utf-8">
+    //导航高亮
+    highlight_subnav('{:url('index')}');
+</script>
+{/block}

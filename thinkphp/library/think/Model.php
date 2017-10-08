@@ -235,6 +235,7 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
             if (is_object($data)) {
                 $data = get_object_vars($data);
             }
+            //var_dump($data);exit;
             if (true === $value) {
                 // 数据对象赋值
                 foreach ($data as $key => $value) {
@@ -277,10 +278,12 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
     {
         if (is_null($value) && $this->autoWriteTimestamp && in_array($name, [$this->createTime, $this->updateTime])) {
             // 自动写入的时间戳字段
+
             $value = $this->autoWriteTimestamp($name);
         } else {
             // 检测修改器
             $method = 'set' . Loader::parseName($name, 1) . 'Attr';
+            //var_dump($method);
             if (method_exists($this, $method)) {
                 $value = $this->$method($value, array_merge($data, $this->data));
             } elseif (isset($this->type[$name])) {

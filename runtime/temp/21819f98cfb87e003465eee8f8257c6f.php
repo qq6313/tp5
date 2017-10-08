@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:81:"D:\phpStudy\WWW\twothink\public/../application/admin/view/default/expire\add.html";i:1506662104;s:82:"D:\phpStudy\WWW\twothink\public/../application/admin/view/default/public\base.html";i:1496373782;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:81:"D:\phpStudy\WWW\twothink\public/../application/admin/view/default/expire\add.html";i:1506742471;s:82:"D:\phpStudy\WWW\twothink\public/../application/admin/view/default/public\base.html";i:1496373782;}*/ ?>
 <!doctype html>
 <html>
 <head>
@@ -116,6 +116,12 @@
         </div>
     </div>
     <div class="form-item">
+        <label class="item-label">姓名<span class="check-tips">（您的姓名）</span></label>
+        <div class="controls">
+            <input type="text" class="text input-large" name="name" value="<?php echo (isset($info['name']) && ($info['name'] !== '')?$info['name']:''); ?>">
+        </div>
+    </div>
+    <div class="form-item">
         <label class="item-label">地址<span class="check-tips">（您的地址）</span></label>
         <div class="controls">
             <input type="text" class="text input-large" name="address" value="<?php echo (isset($info['address']) && ($info['address'] !== '')?$info['address']:''); ?>">
@@ -136,7 +142,6 @@
 
     <div class="form-item">
         <input type="hidden" name="id" value="<?php echo (isset($info['id']) && ($info['id'] !== '')?$info['id']:''); ?>">
-        <input type="hidden" name="create_time" value="<?=time()?>">
         <button class="btn submit-btn ajax-posts" id="submit" type="submit" target-form="form-horizontal">确 定</button>
         <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
     </div>

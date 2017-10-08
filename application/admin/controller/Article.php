@@ -441,6 +441,7 @@ class Article extends Admin {
         if(!$jc_data       = logic($model_id)->detail($id)){
             $this->error('数据不存在');
         }
+        //var_dump(logic($model_id));
         //获取扩展模型数据
         if($jc_data['model_id']){
             $kz_data  = logic($jc_data['model_id'])->detail($id);
@@ -451,6 +452,7 @@ class Article extends Admin {
         }else{
             $data = $jc_data;
         }
+
         if($data['pid']){
             // 获取上级文档
             $article        =   \think\Db::name(get_table_name($model_id))->field('id,,titletype')->find($data['pid']);
@@ -482,6 +484,7 @@ class Article extends Admin {
     	/* 获取数据对象 */
     	$model_id = input('param.model_id',0);
     	$data = input();
+    	//var_dump($data);exit;
     	if(!$model_id)
     		$this->error('模型id不能为空');
     	//获取模型信息
@@ -498,7 +501,9 @@ class Article extends Admin {
         }
         //更新当前模型
         $logic = logic($model['id']);
+        //var_dump($logic);
         $res = $logic->updates($update_id);
+        //var_dump($logic);exit;
         $res || $this->error($logic->getError());
         $this->success(!empty($data['id'])?'更新成功':'新增成功', Cookie('__forward__'));
     }

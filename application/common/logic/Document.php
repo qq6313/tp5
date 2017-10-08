@@ -42,7 +42,10 @@ class Document extends Base {
         return $this->getPosition($value);
     }
     protected function setDeadlineAttr($value){
-        return strtotime($value);
+//        var_dump($value);
+        //return strtotime($value);
+        return $this->formatDateTime($value,$this->dateFormat);
+//        return $value;
     }
     protected function setUpdateTimeAttr(){
         return time();

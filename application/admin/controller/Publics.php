@@ -10,6 +10,7 @@
 namespace app\admin\Controller;  
 use think\Controller;
 use app\common\controller\UcApi;
+use think\Session;
 
 /**
  * 后台首页控制器 
@@ -50,6 +51,7 @@ class Publics extends Controller {
                 $Member = model('Member');
                 if($Member->login($uid)){ //登录用户
                     //TODO:跳转到登录前页面
+
                     $this->success('登录成功！', url('Index/index'));
                 } else {
                     $this->error($Member->getError());

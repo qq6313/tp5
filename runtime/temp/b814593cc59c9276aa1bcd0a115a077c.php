@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"D:\phpStudy\WWW\twothink\public/../application/admin/view/default/expire\index.html";i:1506669673;s:82:"D:\phpStudy\WWW\twothink\public/../application/admin/view/default/public\base.html";i:1496373782;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"D:\phpStudy\WWW\twothink\public/../application/admin/view/default/expire\index.html";i:1506742538;s:82:"D:\phpStudy\WWW\twothink\public/../application/admin/view/default/public\base.html";i:1496373782;}*/ ?>
 <!doctype html>
 <html>
 <head>
@@ -106,8 +106,7 @@
 
 <div class="cf">
     <a class="btn" href="<?php echo url('add'); ?>">新 增</a>
-    <a class="btn" href="javascript:;">删 除</a>
-    <button class="btn list_sort" url="<?php echo url('sort',array('pid'=>input('get.pid',0)),''); ?>">排序</button>
+    <button class="btn ajax-post confirm" url="<?php echo url('del'); ?>" target-form="ids">删 除</button>
 </div>
 
 <div class="data-table table-striped">
@@ -118,20 +117,23 @@
                 <input class="checkbox check-all" type="checkbox">
             </th>
             <th>ID</th>
+            <th>姓名</th>
             <th>电话</th>
             <th>地址</th>
             <th>状态</th>
             <th>简述</th>
             <th>问题描述</th>
-            <th>时间</th>
+            <th>创建时间</th>
+            <th>修改时间</th>
             <th>操作</th>
         </tr>
         </thead>
         <tbody>
         <?php if(!(empty($expire) || (($expire instanceof \think\Collection || $expire instanceof \think\Paginator ) && $expire->isEmpty()))): if(is_array($expire) || $expire instanceof \think\Collection || $expire instanceof \think\Paginator): $i = 0; $__LIST__ = $expire;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$expire): $mod = ($i % 2 );++$i;?>
         <tr>
-            <td><input class="ids row-selected" type="checkbox" name="" id="" value="<?php echo $expire['id']; ?>"> </td>
+            <td><input class="ids row-selected" type="checkbox" name="id[]" id="" value="<?php echo $expire['id']; ?>"> </td>
             <td><?php echo $expire['id']; ?></td>
+            <td><?php echo $expire['name']; ?></td>
             <td><?php echo $expire['tel']; ?></td>
             <td><?php echo $expire['address']; ?></td>
             <td>
@@ -140,6 +142,7 @@
             <td><?php echo $expire['des']; ?></td>
             <td><?php echo $expire['content']; ?></td>
             <td><?php echo time_format($expire['create_time']); ?></td>
+            <td><?php echo time_format($expire['update_time']); ?></td>
             <td>
                 <a title="编辑" href="<?php echo url('edit?id='.$expire['id']); ?>">编辑</a>
                 <a href="<?php echo url('setStatus?ids='.$expire['id'].'&status='.abs(1-$expire['status'])); ?>" class="ajax-get"><?php echo show_status_op($expire['status']); ?></a>
@@ -151,6 +154,10 @@
         <?php endif; ?>
         </tbody>
     </table>
+    <!-- 分页 -->
+    <div class="page">
+        <?php echo $page; ?>
+    </div>
 </div>
 
         </div>
