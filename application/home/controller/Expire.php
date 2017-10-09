@@ -43,4 +43,10 @@ class Expire extends Home
         }
 
     }
+    public function my(){
+        $id=Session::get('user_auth')['uid'];
+        $data=Db::name('expire')->where('uid',$id)->select();
+        $this->assign('data',$data);
+        return $this->fetch();
+    }
 }

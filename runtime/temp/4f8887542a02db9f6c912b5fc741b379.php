@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:82:"D:\phpStudy\WWW\twothink\public/../application/home/view/default/rental\index.html";i:1507443911;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:82:"D:\phpStudy\WWW\twothink\public/../application/home/view/default/rental\index.html";i:1507450584;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -58,11 +58,11 @@
                         <?php foreach($document as $i=>$d):?>
                         <div class="col-xs-6 col-md-4">
                             <div class="thumbnail">
-                                <img src="<?php echo $picture[$i]; ?>" alt="...">
+                                <img src="<?php echo $d['logo']; ?>" alt="...">
                                 <div class="caption">
                                     <h4><?php echo $d['title']; ?></h4>
                                     <p class="zushouInfo"><?php echo $d['description']; ?></p>
-                                    <p class="text-danger"><?php echo $d['view']; ?>元/月</p>
+                                    <p class="text-danger"><?php echo $d['price']; ?>元/月</p>
                                     <p><a href="<?php echo url('article?id='.$d['id']); ?>" class="btn btn-danger zushouBtn">详细信息</a> </p>
                                 </div>
                             </div>
@@ -78,11 +78,11 @@
                             <?php foreach($document1 as $i=>$d):?>
                             <div class="col-xs-6 col-md-4">
                                 <div class="thumbnail">
-                                    <img src="<?php echo $picture1[$i]; ?>" alt="...">
+                                    <img src="<?php echo $d['logo']; ?>" alt="...">
                                     <div class="caption">
                                         <h4><?php echo $d['title']; ?></h4>
                                         <p class="zushouInfo"><?php echo $d['description']; ?></p>
-                                        <p class="text-danger"><?php echo $d['view']; ?>元/月</p>
+                                        <p class="text-danger"><?php echo $d['price']; ?>元/月</p>
                                         <p><a href="<?php echo url('article?id='.$d['id']); ?>" class="btn btn-danger zushouBtn">详细信息</a> </p>
                                     </div>
                                 </div>

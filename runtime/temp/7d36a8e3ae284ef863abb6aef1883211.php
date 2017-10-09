@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"D:\phpStudy\WWW\twothink\public/../application/home/view/default/about\index.html";i:1507442496;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"D:\phpStudy\WWW\twothink\public/../application/home/view/default/about\index.html";i:1507453040;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -46,16 +46,14 @@
     <?php foreach($document as $i=>$d):?>
     <div class="container-fluid">
         <div class="row noticeList">
-            <a href="<?php echo url('article?id='.$d['id']); ?>">
-                <div class="col-xs-2">
-                    <img class="noticeImg" src="<?php echo $picture[$i]; ?>"/>
-                </div>
+            <h1>关于我们</h1>
+
                 <div class="col-xs-10">
-                    <p class="title"><?php echo $d['title']; ?></p>
-                    <p class="intro"><?php echo $d['description']; ?></p>
-                    <p class="info">浏览: <?php echo $d['view']; ?> <span class="pull-right"><?php echo time_format($d['create_time']); ?></span> </p>
+
+                    <?php echo $d['description']; ?>
+
                 </div>
-            </a>
+
         </div>
     </div>
 

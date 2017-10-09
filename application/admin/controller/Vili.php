@@ -14,10 +14,8 @@ class Vili extends Admin{
 
     }
     public function edit($id){
-        Db::name('vili')
-            ->where('id', $id)
-            ->update(['status' => 1]);
 
+        Db::name('vili')->where('id', $id)->update(['status' => 1]);
         return 'success';
     }
 

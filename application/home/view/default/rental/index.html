@@ -57,11 +57,11 @@
                         <?php foreach($document as $i=>$d):?>
                         <div class="col-xs-6 col-md-4">
                             <div class="thumbnail">
-                                <img src="{$picture[$i]}" alt="...">
+                                <img src="{$d.logo}" alt="...">
                                 <div class="caption">
                                     <h4>{$d.title}</h4>
                                     <p class="zushouInfo">{$d.description}</p>
-                                    <p class="text-danger">{$d.view}元/月</p>
+                                    <p class="text-danger">{$d.price}元/月</p>
                                     <p><a href="{:url('article?id='.$d['id'])}" class="btn btn-danger zushouBtn">详细信息</a> </p>
                                 </div>
                             </div>
@@ -77,11 +77,11 @@
                             <?php foreach($document1 as $i=>$d):?>
                             <div class="col-xs-6 col-md-4">
                                 <div class="thumbnail">
-                                    <img src="{$picture1[$i]}" alt="...">
+                                    <img src="{$d.logo}" alt="...">
                                     <div class="caption">
                                         <h4>{$d.title}</h4>
                                         <p class="zushouInfo">{$d.description}</p>
-                                        <p class="text-danger">{$d.view}元/月</p>
+                                        <p class="text-danger">{$d.price}元/月</p>
                                         <p><a href="{:url('article?id='.$d['id'])}" class="btn btn-danger zushouBtn">详细信息</a> </p>
                                     </div>
                                 </div>

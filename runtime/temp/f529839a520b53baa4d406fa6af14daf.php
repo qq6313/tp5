@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"D:\phpStudy\WWW\twothink\public/../application/home/view/default/rental\article.html";i:1507450870;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"D:\phpStudy\WWW\twothink\public/../application/home/view/default/question\index.html";i:1507452354;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -42,27 +42,31 @@
             </div>
         </div>
     </nav>
-
     <!--导航结束-->
-    <?php if(!(empty($article) || (($article instanceof \think\Collection || $article instanceof \think\Paginator ) && $article->isEmpty()))): if(is_array($article) || $article instanceof \think\Collection || $article instanceof \think\Paginator): $i = 0; $__LIST__ = $article;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$article): $mod = ($i % 2 );++$i;?>
- 
+    <?php foreach($document as $i=>$d):?>
     <div class="container-fluid">
-        <div class="blank"></div>
-        <h3 class="noticeDetailTitle"><strong> <?php echo $article['title']; ?></strong></h3>
-        <div class="noticeDetailInfo">发布者:XXX小区物管</div>
-        <div class="noticeDetailInfo">结束时间：<?php echo $article['end_time']; ?></div>
-        <div class="noticeDetailInfo">联系电话：<?php echo $article['tel']; ?></div>
-        <h4 class="text-danger">价格:<?php echo $article['price']; ?>元/月</h4>
-        <div class="noticeDetailContent">
-            <?php echo $article['content']; ?>
+        <div class="row noticeList">
+            <a href="<?php echo url('article?id='.$d['id']); ?>">
+                <div class="col-xs-2">
+                    <img class="noticeImg" src="<?php echo $picture[$i]; ?>"/>
+                </div>
+                <div class="col-xs-10">
+                    <p class="title"><?php echo $d['title']; ?></p>
+                    <p class="intro"><?php echo $d['description']; ?></p>
+                    <p class="info">参与人数: <?php echo $d['view']; ?> <span class="pull-right"><?php echo time_format($d['create_time']); ?></span> </p>
+                </div>
+            </a>
         </div>
     </div>
 
-    <?php endforeach; endif; else: echo "" ;endif; else: ?>
-    <td colspan="6" class="text-center"> aOh! 暂时还没有内容! </td>
-   
-    <?php endif; ?>
 
+    <?php endforeach;?>
+    <!--<td colspan="6" class="text-center"> aOh! 暂时还没有内容! </td>-->
+
+
+
+</div>
+<div class="page">
 
 </div>
 <!-- jQuery (necessary for bootstrap1's JavaScript plugins) -->

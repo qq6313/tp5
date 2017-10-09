@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:78:"D:\phpStudy\WWW\twothink\public/../application/home/view/default/my\index.html";i:1507432444;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:78:"D:\phpStudy\WWW\twothink\public/../application/home/view/default/my\index.html";i:1507451001;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -29,7 +29,7 @@
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid text-center">
             <div class="col-xs-3">
-                <p class="navbar-text"><a href="index.html" class="navbar-link">首页</a></p>
+                <p class="navbar-text"><a href="<?php echo url('index/index'); ?>" class="navbar-link">首页</a></p>
             </div>
             <div class="col-xs-3">
                 <p class="navbar-text"><a href="#" class="navbar-link">服务</a></p>
@@ -59,7 +59,7 @@
         <div class="blank"></div>
         <div class="row text-center myLabel">
             <div class="col-xs-4 label-danger"><a href="#"><span class="iconfont">&#xe60b;</span>我的资料</a></div>
-            <div class="col-xs-4 label-success"><a href="#"><span class="iconfont">&#xe609;</span>我的报修</a></div>
+            <div class="col-xs-4 label-success"><a href="<?php echo url('expire/my'); ?>"><span class="iconfont">&#xe609;</span>我的报修</a></div>
             <div class="col-xs-4 label-primary"><a href="#"><span class="iconfont">&#xe606;</span>报名的活动</a></div>
         </div>
         <div class="blank"></div>

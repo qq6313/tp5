@@ -18,37 +18,40 @@
                 <input class="checkbox check-all" type="checkbox">
             </th>
             <th>ID</th>
-            <th>真实姓名</th>
+            <th>姓名</th>
+            <th>标题</th>
+            <th>价格</th>
+            <th>类型</th>
+            <th>图片</th>
+            <th>内容</th>
+            <th>简述</th>
             <th>电话</th>
-            <th>房号</th>
-            <th>状态</th>
-            <th>与业主的关系</th>
-            <th>是否通过</th>
+            <th>结束时间</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody>
         {notempty name="expire"}
         {volist name="expire" id="expire"}
-        <tr data-id="{$expire.id}">
+        <tr>
             <td><input class="ids row-selected" type="checkbox" name="id[]" id="" value="{$expire['id']}"> </td>
             <td>{$expire.id}</td>
-            <td>{$expire.realname}</td>
+            <td>{$expire.name}</td>
+            <td>{$expire.title}</td>
+            <td>{$expire.price}</td>
+            <td>
+                {$expire.type==1?"出租":"出售"}
+            </td>
+            <td><img src="{$expire.logo}" alt="" width="100px"></td>
+
+            <td>{$expire.content}</td>
+            <td>{$expire.description}</td>
             <td>{$expire.tel}</td>
-            <td>{$expire.num}</td>
+            <td>{$expire.end_time}</td>
             <td>
-                {$expire.status==1?"已通过":"未通过"}
-            </td>
-            <td>
-                <?php if($expire['relation']==1){
-                echo "本人";
-                }elseif($expire['relation']==2){
-                echo "亲戚";
-                }elseif($expire['relation']==3){
-                echo "租户";
-                }?>
-            </td>
-            <td>
-                <a  href="javascript:;" class="tongguo">通过</a>
+                <a title="编辑" href="{:url('edit?id='.$expire['id'])}">编辑</a>
+                <a href="{:url('setStatus?ids='.$expire['id'].'&status='.abs(1-$expire['status']))}" class="ajax-get">{$expire.status|show_status_op}</a>
+                <a class="confirm ajax-get" title="删除" href="{:url('del?id='.$expire['id'])}">删除</a>
             </td>
         </tr>
         {/volist}
@@ -67,19 +70,6 @@
 {block name="script"}
 <script type="text/javascript">
     $(function() {
-        $('.tongguo').click(function () {
-            var id=$(this).closest('tr').attr('data-id');
-           $.get(
-               '/admin/vili/edit.html',{'id':id},function (data) {
-
-                   if(data=='success'){
-                       alert("通过成功")
-                       location.reload();
-                   }
-               }
-           )
-        })
-
         //点击排序
         $('.list_sort').click(function(){
             var url = $(this).attr('url');

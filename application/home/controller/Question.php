@@ -2,24 +2,21 @@
 namespace app\home\controller;
 use think\Db;
 
-class Server extends Home
+class Question extends Home
 {
     public function index(){
-            return $this->fetch('page');
-    }
-    public function ajaxpage($page=1){
 
-        $document=Db::name('document')->where('category_id',47)->where('display',1)->where('deadline','>',time())->paginate(1);
+        $document=Db::name('document')->where('category_id',50)->where('display',1)->select();
         $cover_id=[];
         foreach($document as $docu){
             $cover_id[]=$docu['cover_id'];
+
         }
+
         $picture=Db::name('picture')->where('id','in',$cover_id)->select();
         $this->assign('document',$document);
         $picture=array_column($picture,'path');
         $this->assign('picture',$picture);
-        $this->assign('no',++$page);
-
         return $this->fetch('index');
 
     }

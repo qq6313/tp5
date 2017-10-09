@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:80:"D:\phpStudy\WWW\twothink\public/../application/home/view/default/fuwu\index.html";i:1507441772;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:80:"D:\phpStudy\WWW\twothink\public/../application/home/view/default/fuwu\index.html";i:1507452450;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -29,7 +29,7 @@
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid text-center">
             <div class="col-xs-3">
-                <p class="navbar-text"><a href="index.html" class="navbar-link">首页</a></p>
+                <p class="navbar-text"><a href="<?php echo url('index/index'); ?>" class="navbar-link">首页</a></p>
             </div>
             <div class="col-xs-3">
                 <p class="navbar-text"><a href="#" class="navbar-link">服务</a></p>
@@ -51,7 +51,7 @@
         <div class="blank"></div>
         <div class="container">
             <ul class="list-group fuwuList">
-                <li class="list-group-item"><a href="diaochawenjuan.html" class="text-danger"><span class="iconfont">&#xe604;</span>调查问卷</a> </li>
+                <li class="list-group-item"><a href="<?php echo url('question/index');; ?>" class="text-danger"><span class="iconfont">&#xe604;</span>调查问卷</a> </li>
                 <li class="list-group-item"><a href="#" class="text-success"><span class="iconfont">&#xe602;</span>在线缴费</a></li>
                 <li class="list-group-item"><a href="<?php echo url('life/index');; ?>" class="text-warning"><span class="iconfont">&#xe601;</span>生活贴士</a></li>
                 <li class="list-group-item"><a href="<?php echo url('about/index');; ?>" class="text-primary"><span class="iconfont">&#xe600;</span>关于我们</a></li>

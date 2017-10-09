@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"D:\phpStudy\WWW\twothink\public/../application/home/view/default/rental\article.html";i:1507450870;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:79:"D:\phpStudy\WWW\twothink\public/../application/home/view/default/expire\my.html";i:1507451696;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -42,27 +42,44 @@
             </div>
         </div>
     </nav>
-
     <!--导航结束-->
-    <?php if(!(empty($article) || (($article instanceof \think\Collection || $article instanceof \think\Paginator ) && $article->isEmpty()))): if(is_array($article) || $article instanceof \think\Collection || $article instanceof \think\Paginator): $i = 0; $__LIST__ = $article;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$article): $mod = ($i % 2 );++$i;?>
- 
+
     <div class="container-fluid">
-        <div class="blank"></div>
-        <h3 class="noticeDetailTitle"><strong> <?php echo $article['title']; ?></strong></h3>
-        <div class="noticeDetailInfo">发布者:XXX小区物管</div>
-        <div class="noticeDetailInfo">结束时间：<?php echo $article['end_time']; ?></div>
-        <div class="noticeDetailInfo">联系电话：<?php echo $article['tel']; ?></div>
-        <h4 class="text-danger">价格:<?php echo $article['price']; ?>元/月</h4>
-        <div class="noticeDetailContent">
-            <?php echo $article['content']; ?>
+        <div class="row noticeList">
+            <a href="<?php echo url('article?id='.$d['id']); ?>">
+                <table>
+                    <tr>
+                        <td>名字</td>
+                        <td>电话</td>
+                        <td>状态</td>
+                        <td>地址</td>
+                        <td>简述</td>
+                        <td>内容</td>
+                       
+                    </tr>
+                    <?php foreach($data as $d):?>
+                    <tr>
+                        <td><?php echo $d['name']; ?></td>
+                        <td><?php echo $d['tel']; ?></td>
+                        <td><?php echo !empty($d['status']) && $d['status']==1?"已收到保修":"处理完成";; ?></td>
+                        <td><?php echo $d['address']; ?></td>
+                        <td><?php echo $d['des']; ?></td>
+                        <td><?php echo $d['content']; ?></td>
+                    </tr>
+                    <?php endforeach;?>
+                </table>
+            </a>
         </div>
     </div>
 
-    <?php endforeach; endif; else: echo "" ;endif; else: ?>
-    <td colspan="6" class="text-center"> aOh! 暂时还没有内容! </td>
-   
-    <?php endif; ?>
 
+
+    <!--<td colspan="6" class="text-center"> aOh! 暂时还没有内容! </td>-->
+
+
+
+</div>
+<div class="page">
 
 </div>
 <!-- jQuery (necessary for bootstrap1's JavaScript plugins) -->
